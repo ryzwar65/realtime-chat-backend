@@ -1,0 +1,33 @@
+{
+  "name": "realtime-socket",
+  "version": "1.0.0",
+  "description": "",
+  "type": "commonjs",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev-app": "nodemon app.js"
+  },
+  "prisma": {
+    "seed": "node prisma/seed.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@prisma/client": "^4.0.0",
+    "bcrypt": "^5.0.1",
+    "body-parser": "^1.20.0",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
+    "helmet": "^5.1.0",
+    "jsonwebtoken": "^8.5.1",
+    "morgan": "^1.10.0",
+    "socket.io": "^4.5.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.18",
+    "prisma": "^4.0.0"
+  }
+}

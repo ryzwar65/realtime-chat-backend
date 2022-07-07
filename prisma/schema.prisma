@@ -1,0 +1,52 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Chat{
+  id Int @id @default(autoincrement())
+  chatRoom ChatRoom @relation(fields: [chatRoomId], references: [id])
+  chatRoomId Int
+  customer Customer @relation(fields: [customerId], references: [id])
+  customerId Int
+  merchant Merchant @relation(fields: [merchantId], references: [id])
+  merchantId Int
+  chatText String @db.LongText()
+}
+
+model ChatRoom{
+  id Int @id @default(autoincrement())
+  customer Customer @relation(fields: [customerId], references: [id])
+  customerId Int
+  merchant Merchant @relation(fields: [merchantId], references: [id])
+  merchantId Int
+  chats Chat[]
+}
+
+model Merchant{
+  id Int @id @default(autoincrement())
+  firstname String @db.VarChar(100)
+  lastname String @db.VarChar(100)
+  email String @unique @db.VarChar(50)
+  password String @db.VarChar(191)  
+  storeName String @db.VarChar(100)
+  chatsRooms ChatRoom[]
+  chats Chat[]
+}
+
+model Customer{
+  id Int @id @default(autoincrement())
+  firstname String @db.VarChar(100)
+  lastname String @db.VarChar(100)
+  email String @unique @db.VarChar(50)
+  password String @db.VarChar(191)  
+  chatsRooms ChatRoom[]
+  chats Chat[]
+}
